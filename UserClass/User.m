@@ -70,6 +70,11 @@
 }
 
 - (void)setValueIntoDefaults:(id)value forKey:(NSString *)key {
+    
+    if (!value) {
+        return;
+    }
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:value forKey:key];
     [defaults synchronize]; // We synchronize so we know for a fact it has been saved immediately
@@ -87,6 +92,11 @@
 }
 
 - (void)setValueIntoKeychain:(NSString *)value forKey:(NSString *)key {
+    
+    if (!value) {
+        return;
+    }
+    
     [SSKeychain setPassword:value forService:key account:KEY_ACCOUNT];
 }
 
